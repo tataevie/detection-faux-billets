@@ -1,6 +1,8 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
+from fastapi import Form
+import io
 
 app = FastAPI()
 
@@ -14,14 +16,14 @@ app.add_middleware(
 )
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...), model_name: str = "random_forest"):
+async def predict(
+    file: UploadFile = File(...),
+    model_name: str = Form("random_forest")  # <-- Form ici
+):
     try:
-        # Lecture du CSV uploadé
         content = await file.read()
-        df = pd.read_csv(pd.io.common.BytesIO(content))
+        df = pd.read_csv(io.BytesIO(content))
         
-        # Ici tu lanceras ton modèle ML selon model_name sur df
-        # Pour l’exemple on renvoie un faux résultat
         results = []
         for idx in range(len(df)):
             results.append({"index": idx, "prediction": 0, "probability_faux": 0.1})

@@ -57,7 +57,7 @@ model_name = st.sidebar.selectbox("🧠 Sélectionnez un modèle", options=[
 ])
 
 # URL de l'API - à adapter si déployée en ligne
-API_URL = "https://detection-faux-billets-production.up.railway.app/predict"
+API_URL = "https://detection-faux-billets-production-cae3.up.railway.app/predict"
 
 # Bouton prédiction
 if uploaded_file is not None:
@@ -65,8 +65,8 @@ if uploaded_file is not None:
         with st.spinner("🔄 Appel de l'API et calcul des prédictions..."):
             try:
                 files = {"file": (uploaded_file.name, uploaded_file, "text/csv")}
-                params = {"model_name": model_name}
-                response = requests.post(API_URL, files=files, params=params)
+                data = {"model_name": model_name}
+                response = requests.post(API_URL, files=files, data=data)
                 
                 if response.status_code == 200:
                     data = response.json()
@@ -74,19 +74,17 @@ if uploaded_file is not None:
 
                     st.success(f"✅ Prédictions réussies avec le modèle : **{model_name}**")
                     
-                    # Affichage tableau clair
                     st.subheader("📋 Résultats des Prédictions")
                     st.dataframe(results_df.style.highlight_max(axis=0, color="#ffd966"))
 
-                    # Statistiques : vrais vs faux
+                    # Statistiques
                     st.subheader("📊 Statistiques")
                     count_pred = results_df['prediction'].value_counts().rename({0: "Vrai billet", 1: "Faux billet"})
                     count_pred_df = count_pred.reset_index()
                     count_pred_df.columns = ["Classe", "Nombre"]
-
                     st.write(count_pred_df)
 
-                    # Graphique interactif Altair - répartition classes
+                    # Graphiques Altair
                     st.subheader("📈 Visualisation des Prédictions")
                     bar_chart = alt.Chart(count_pred_df).mark_bar(color="#0078d4").encode(
                         x=alt.X('Classe', sort=None, title="Classe"),
@@ -95,8 +93,6 @@ if uploaded_file is not None:
                     ).properties(width=600)
                     st.altair_chart(bar_chart, use_container_width=True)
 
-
-                    # Histogramme probabilités de faux si dispo
                     if "probability_faux" in results_df.columns and results_df["probability_faux"].notnull().any():
                         st.subheader("🔍 Distribution des probabilités de faux billets")
                         hist = alt.Chart(results_df).mark_bar(color="#e63946").encode(
@@ -105,7 +101,6 @@ if uploaded_file is not None:
                             tooltip=['count()']
                         ).properties(width=600)
                         st.altair_chart(hist, use_container_width=True)
-
                 else:
                     st.error(f"❌ Erreur API : {response.status_code} - {response.text}")
 
