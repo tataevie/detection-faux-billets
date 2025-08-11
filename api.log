@@ -1,0 +1,57 @@
+INFO:root:Fichier reçu : 1500 lignes
+ERROR:root:Erreur prédiction : 400: Colonnes requises manquantes : ['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length']
+INFO:root:Fichier reçu : 1500 lignes
+ERROR:root:Erreur prédiction : 400: Colonnes requises manquantes : ['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length']
+INFO:root:Fichier reçu : 1500 lignes
+ERROR:root:Erreur prédiction : 400: Colonnes requises manquantes : ['diagonal', 'height_left', 'height_right', 'margin_low', 'margin_up', 'length']
+INFO:root:Modèles chargés avec succès
+INFO:root:Modèles chargés avec succès
+ERROR:root:Erreur : 400: Seuls les fichiers CSV sont acceptés
+INFO:root:Modèles chargés avec succès
+2025-08-11 00:17:52,327 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:17:52,327 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:18:26,875 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/ExamApi/scaler.sav'
+2025-08-11 00:18:26,875 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/ExamApi/scaler.sav'
+2025-08-11 00:18:48,905 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:18:49,001 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:19:06,963 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:19:07,014 - ERROR - Erreur chargement scaler : [Errno 2] No such file or directory: 'models/scaler.sav'
+2025-08-11 00:22:58,913 - INFO - Scaler chargé avec succès.
+2025-08-11 00:22:59,068 - INFO - Scaler chargé avec succès.
+2025-08-11 00:22:59,094 - INFO - Modèle 'random_forest' chargé avec succès.
+2025-08-11 00:22:59,095 - INFO - Modèle 'logistic_regression' chargé avec succès.
+2025-08-11 00:22:59,096 - INFO - Modèle 'knn' chargé avec succès.
+2025-08-11 00:22:59,133 - INFO - Modèle 'kmeans' chargé avec succès.
+2025-08-11 00:22:59,256 - INFO - Modèle 'random_forest' chargé avec succès.
+2025-08-11 00:22:59,266 - INFO - Modèle 'logistic_regression' chargé avec succès.
+2025-08-11 00:22:59,267 - INFO - Modèle 'knn' chargé avec succès.
+2025-08-11 00:22:59,306 - INFO - Modèle 'kmeans' chargé avec succès.
+2025-08-11 00:32:35,573 - INFO - Scaler chargé avec succès.
+2025-08-11 00:32:35,573 - INFO - Scaler chargé avec succès.
+2025-08-11 00:32:35,767 - INFO - Modèle 'random_forest' chargé avec succès.
+2025-08-11 00:32:35,769 - INFO - Modèle 'logistic_regression' chargé avec succès.
+2025-08-11 00:32:35,769 - INFO - Modèle 'random_forest' chargé avec succès.
+2025-08-11 00:32:35,770 - INFO - Modèle 'knn' chargé avec succès.
+2025-08-11 00:32:35,770 - INFO - Modèle 'logistic_regression' chargé avec succès.
+2025-08-11 00:32:35,771 - INFO - Modèle 'knn' chargé avec succès.
+2025-08-11 00:32:35,806 - INFO - Modèle 'kmeans' chargé avec succès.
+2025-08-11 00:32:35,806 - INFO - Modèle 'kmeans' chargé avec succès.
+2025-08-11 00:43:49,203 - ERROR - Erreur interne: Input X contains NaN.
+LogisticRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
+Traceback (most recent call last):
+  File "C:\Users\filyt\Downloads\MLApi\ExamApi\api.py", line 91, in predict
+    preds = model.predict(X_scaled)
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\linear_model\_base.py", line 374, in predict
+    scores = self.decision_function(X)
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\linear_model\_base.py", line 351, in decision_function
+    X = validate_data(self, X, accept_sparse="csr", reset=False)
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 2944, in validate_data
+    out = check_array(X, input_name="X", **check_params)
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 1107, in check_array
+    _assert_all_finite(
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 120, in _assert_all_finite
+    _assert_all_finite_element_wise(
+  File "C:\Users\filyt\anaconda3\lib\site-packages\sklearn\utils\validation.py", line 169, in _assert_all_finite_element_wise
+    raise ValueError(msg_err)
+ValueError: Input X contains NaN.
+LogisticRegression does not accept missing values encoded as NaN natively. For supervised learning, you might want to consider sklearn.ensemble.HistGradientBoostingClassifier and Regressor which accept missing values encoded as NaNs natively. Alternatively, it is possible to preprocess the data, for instance by using an imputer transformer in a pipeline or drop samples with missing values. See https://scikit-learn.org/stable/modules/impute.html You can find a list of all estimators that handle NaN values at the following page: https://scikit-learn.org/stable/modules/impute.html#estimators-that-handle-nan-values
