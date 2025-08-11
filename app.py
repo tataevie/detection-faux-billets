@@ -57,7 +57,7 @@ model_name = st.sidebar.selectbox("🧠 Sélectionnez un modèle", options=[
 ])
 
 # URL de l'API - à adapter si déployée en ligne
-API_URL = "http://localhost:8000/predict"
+API_URL = "https://detection-faux-billets-production.up.railway.app/predict"
 
 # Bouton prédiction
 if uploaded_file is not None:
