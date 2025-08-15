@@ -15,14 +15,19 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def test():
+    return {"Greeting": "Hello World"}
+
 @app.post("/predict")
 async def predict(
     file: UploadFile = File(...),
     model_name: str = Form("random_forest")  # <-- Form ici
 ):
+    print("success")
     try:
         content = await file.read()
-        df = pd.read_csv(io.BytesIO(content))
+        df = pd.read_csv(io.StringIO(content.decode('utf-8')))
         
         results = []
         for idx in range(len(df)):
@@ -30,4 +35,5 @@ async def predict(
         
         return {"results": results}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
